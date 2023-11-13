@@ -1,1 +1,162 @@
-/* You can add global styles to this file, and also import other style files */
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$smartpass-primary: mat.define-palette(mat.$indigo-palette);
+$smartpass-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$smartpass-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$smartpass-theme: mat.define-light-theme((
+  color: (
+    primary: $smartpass-primary,
+    accent: $smartpass-accent,
+    warn: $smartpass-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($smartpass-theme);
+
+// tailwind directives
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .card {
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        filter: blur(0.5px);
+    }
+
+    .button-common {
+        z-index: -1;
+        appearance: none;
+        background-color: #FFFFFF;
+        border-width: 0;
+        box-sizing: border-box;
+        color: #000000;
+        cursor: pointer;
+        display: inline-block;
+        font-family: Clarkson, Helvetica, sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0;
+        line-height: 1em;
+        margin: 0;
+        opacity: 1;
+        outline: 0;
+        padding: 1.5em 2.2em;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        text-rendering: geometricprecision;
+        text-transform: uppercase;
+        transition: opacity 300ms cubic-bezier(.694, 0, 0.335, 1), background-color 100ms cubic-bezier(.694, 0, 0.335, 1), color 100ms cubic-bezier(.694, 0, 0.335, 1);
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: baseline;
+        white-space: nowrap;
+        border-radius: 0.375rem;
+    }
+
+    .button-common:before {
+        z-index: -1;
+        animation: opacityFallbackOut .5s step-end forwards;
+        backface-visibility: hidden;
+        background-color: #EBEBEB;
+        clip-path: polygon(-1% 0, 0 0, -25% 100%, -1% 100%);
+        content: "";
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        transform: translateZ(0);
+        transition: clip-path .5s cubic-bezier(.165, 0.84, 0.44, 1), -webkit-clip-path .5s cubic-bezier(.165, 0.84, 0.44, 1);
+        width: 100%;
+        border-radius: 0.375rem;
+    }
+
+    .button-common:hover:before {
+        z-index: -1;
+        animation: opacityFallbackIn 0s step-start forwards;
+        clip-path: polygon(0 0, 101% 0, 101% 101%, 0 101%);
+        border-radius: 0.375rem;
+    }
+
+    .button-common:after {
+        background-color: #FFFFFF;
+    }
+
+    .login-signup {
+        background-color: #a2ccea;
+        border-radius: 3px;
+        border: 1px solid #7aa7c7;
+        box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
+        box-sizing: border-box;
+        color: #39739d;
+        cursor: pointer;
+        display: inline-block;
+        font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans", sans-serif;
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 1.15385;
+        margin: 0;
+        outline: none;
+        padding: 8px .8em;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: baseline;
+        white-space: nowrap;
+    }
+
+    .login-signup:disabled {
+        background-color: white;
+        color: #a0a2a2;
+        cursor: not-allowed;
+    }
+
+    .login-signup:hover:not(:disabled),
+    .login-signup:focus:not(:disabled) {
+        background-color: #b3d3ea;
+        color: #2c5777;
+    }
+
+    .login-signup:focus:not(:disabled) {
+        box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+    }
+
+    .login-signup:active:not(:disabled) {
+        background-color: #a0c7e4;
+        box-shadow: none;
+        color: #2c5777;
+    }
+
+    input:invalid {
+        border: 2px solid red;
+    }
+
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

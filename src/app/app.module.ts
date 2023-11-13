@@ -6,12 +6,16 @@ import { AppComponent } from './app.component';
 import { FingerprintjsProAngularModule } from '@fingerprintjs/fingerprintjs-pro-angular';
 import { LoginComponent } from './login/login.component';
 import { SigninComponent } from './signin/signin.component';
+import { HomeComponent } from './home/home.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SigninComponent,
+    HomeComponent,
     
   ],
   imports: [
@@ -23,6 +27,8 @@ import { SigninComponent } from './signin/signin.component';
         region: "ap"
       }
     }),
+    ReactiveFormsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

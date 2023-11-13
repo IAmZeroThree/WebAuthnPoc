@@ -1,4 +1,9 @@
-<button>
-  Click Here
-</button>
-<p>VisitorId: {{ visitorId }}</p>
+<div>
+  <div *ngIf="!isHome">
+    <app-login *ngIf="!isSignUp" (showSignUp)="showSignUp($event)"></app-login>
+    <app-signin *ngIf="isSignUp" (showSignUp)="showSignUp($event)"></app-signin>
+  </div>
+  <div *ngIf="isHome">
+    <app-home></app-home>
+  </div>
+</div>

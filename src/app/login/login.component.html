@@ -1,1 +1,23 @@
-<p>login works!</p>
+<section class="h-[100vh] w-[100vw] max-w-full flex justify-center items-center lg:justify-end md:justify-end sm:justify-center px-40
+            shadow-sm bg-bus-bg">
+            <form  [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="h-[65vh] md:min-w-[40vw] sm:min-w-[80vw] card flex flex-col justify-center gap-5">
+        <div class="flex mx-8 gap-2 justify-end">
+            <button class="login-signup" disabled>Login</button>
+            <button class="login-signup" (click)="showSignUp.emit()">Sign up</button>
+        </div>
+        <input type="email" id="username"
+            class="h-14 mx-8 rounded-md caret-blue-400 focus:caret-blue-400 p-3 hover:caret-blue-400"
+            [placeholder]="usenamePlaceholder"
+            formControlName="userName">
+        <div class="h-14 mx-8 flex gap-2 items-center">
+            <input type="password" id="password" #password
+                class=" w-[100%] rounded-md caret-blue-400 focus:caret-blue-400 p-3 hover:caret-blue-400"
+                [placeholder]="passwordPlaceholder" formControlName="password">
+            <button class="border-none bg-transparent absolute right-[2.5rem] pt-1"
+                (click)="showSecret('password')"><mat-icon>remove_red_eye</mat-icon></button>
+        </div>
+        <button class="button-common h-14 mx-8 rounded-md">Login</button>
+    </div>
+    </form>
+</section>
